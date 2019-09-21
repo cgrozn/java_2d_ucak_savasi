@@ -1,3 +1,3 @@
 # java_2d
-uçak savası oyunu gerekli java kurulumlar yapıldıktan sonra  çalışmasında herhangbirsorun olmaz.
-MAİN  açarak çalıştırılır.
+uçak savaşı oyunu
+ucak savası rar dosyasından direkt indirilip gerekli java sdk kurulduktan sonra çalışır.

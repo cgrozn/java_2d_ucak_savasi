@@ -1,0 +1,99 @@
+
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+
+public class Oyuncu implements KeyListener {
+	private int x;
+	private int y;
+	private boolean sol,sag;
+	private boolean ates;
+	
+	private long der;
+	private long gecikme;
+	private int can;
+	
+	public Oyuncu(int x,int y) {
+		this.x=x;
+		this.y=y;
+	}
+	public void init() {
+		Ekran.frame.addKeyListener(this);
+		der=System.nanoTime();
+		gecikme=100;
+		can=3;
+	}
+	public void temp() {
+		if(!(can<=0)) {
+			if(sol) {
+				if(x>=50) {
+					x-=4;
+				}
+			}
+			if(sag) {
+				if(x<=450-60) {
+					x+=4;
+				}
+			}
+			if(ates) {
+				long son=(System.nanoTime()-der)/1000000;
+				if(son>gecikme) {
+					oyunKur.ates.add(new Ates(x+30,y));
+				}
+				der=System.nanoTime();
+			}
+		}
+	}
+	public void onayla(Graphics g) {
+		if(!(can<=0)) {
+			g.drawImage(resim_ekle.oyuncu, x, y, 60, 60, null);
+		}
+	}
+	
+	public void keyPressed(KeyEvent e) {
+		int yer=e.getKeyCode();
+		if(yer==KeyEvent.VK_LEFT) {
+		sol=true;
+	}
+	if(yer==KeyEvent.VK_RIGHT) {
+		sag=true;
+	}
+	if(yer==KeyEvent.VK_SPACE) {
+		ates=true;
+	}
+	}
+	public void keyReleased(KeyEvent e) {
+		int yer=e.getKeyCode();
+		if(yer==KeyEvent.VK_LEFT) {
+			sol=false;
+		}
+		if(yer==KeyEvent.VK_RIGHT) {
+			sag=false;
+		}
+		if(yer==KeyEvent.VK_SPACE) {
+			ates=false;
+		}
+	}
+	public void keyTyped(KeyEvent e) {
+		
+	}
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public int getSaglik() {
+		return can;
+	}
+	
+	public void setSaglik(int can) {
+		this.can=can;
+	}
+	
+
+}

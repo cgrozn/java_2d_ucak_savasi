@@ -1,0 +1,9 @@
+
+public class Main  {
+
+	public static void main(String[] args) {
+		oyunaGir game=new oyunaGir("Uçak Savaş Oyunu",500,520);
+		game.start();
+	}
+
+}
